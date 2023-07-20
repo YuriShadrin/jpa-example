@@ -1,1 +1,1 @@
-# jpa-example
+# JPA EXAMPLE
