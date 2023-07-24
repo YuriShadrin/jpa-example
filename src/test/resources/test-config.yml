@@ -1,0 +1,15 @@
+spring:
+  main:
+    banner-mode: "OFF"
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:./demodb/db
+    username: sa
+    password: secret
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
