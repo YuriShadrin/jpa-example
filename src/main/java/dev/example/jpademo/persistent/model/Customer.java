@@ -39,10 +39,6 @@ public class Customer {
 	protected Customer() {
 	}
 
-	public Customer(String title, String address) {
-		this(title, address, null);
-	}
-
 	public Customer(String name, String address, String siteUrl) {
 		Objects.requireNonNull(name);
 		Objects.requireNonNull(address);

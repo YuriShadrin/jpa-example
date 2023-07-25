@@ -1,6 +1,6 @@
 package dev.example.jpademo.services.impl;
 
-import static dev.example.jpademo.services.impl.DtoUtils.toEmployeeDto;
+import static dev.example.jpademo.services.impl.ServiceUtils.toEmployeeDto;
 
 import java.util.Collections;
 import java.util.Date;
@@ -75,10 +75,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<EmployeeDto> findEmployees(String lastNamePattern, Pageable page) {
-		Objects.requireNonNull(lastNamePattern);
+		Objects.requireNonNull(lastNamePattern, "lastNamePattern cannot be null");
 		return Collections.unmodifiableList(
 			employeeRepository.findByLastNameContainingIgnoreCase(lastNamePattern, page).
-			stream().map(DtoUtils::toEmployeeDto).toList());
+			stream().map(ServiceUtils::toEmployeeDto).toList());
 	}
 
 	@Override
@@ -101,7 +101,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			.map(e -> getEmployeeItem(e.id()))
 			.map(e -> e.assignToProject(projectService.getProjectItem(project.id())))
 			.map(employeeRepository::save)
-			.map(DtoUtils::toEmployeeDto)
+			.map(ServiceUtils::toEmployeeDto)
 			.get();
 	}
 
@@ -112,7 +112,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			.map(e -> getEmployeeItem(e.id()))
 			.map(e -> e.deassignFromProject(projectService.getProjectItem(project.id())))
 			.map(employeeRepository::save)
-			.map(DtoUtils::toEmployeeDto).get();
+			.map(ServiceUtils::toEmployeeDto).get();
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<EmployeeDto> getProjectEmployees(long projectId) {
 		return Collections.unmodifiableList(
 			employeeRepository.getProjectEmployees(projectId).
-			stream().map(DtoUtils::toEmployeeDto).toList());
+			stream().map(ServiceUtils::toEmployeeDto).toList());
 	}
 
 	@Override
@@ -128,7 +128,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<EmployeeDto> getCustomerEmployees(long customerId) {
 		return Collections.unmodifiableList(
 			employeeRepository.getCustomerEmployees(customerId).
-			stream().map(DtoUtils::toEmployeeDto).toList());
+			stream().map(ServiceUtils::toEmployeeDto).toList());
 	}
 
 	Employee getEmployeeItem(long id) {

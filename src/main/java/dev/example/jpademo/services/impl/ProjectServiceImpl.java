@@ -1,6 +1,6 @@
 package dev.example.jpademo.services.impl;
 
-import static dev.example.jpademo.services.impl.DtoUtils.toProjectDto;
+import static dev.example.jpademo.services.impl.ServiceUtils.toProjectDto;
 
 import java.util.Collections;
 import java.util.List;
@@ -87,7 +87,7 @@ public class ProjectServiceImpl implements ProjectService {
 	public List<ProjectDto> getCustomerProjects(long customerId) {
 		return Collections.unmodifiableList(
 			repository.getCustomerProjects(customerId).
-			stream().map(DtoUtils::toProjectDto).toList());
+			stream().map(ServiceUtils::toProjectDto).toList());
 	}
 
 	@Override
@@ -95,7 +95,7 @@ public class ProjectServiceImpl implements ProjectService {
 	public List<ProjectDto> getEmployeeProjects(long employeeId) {
 		return Collections.unmodifiableList(
 				repository.getEmployeeProjects(employeeId).
-				stream().map(DtoUtils::toProjectDto).toList());
+				stream().map(ServiceUtils::toProjectDto).toList());
 	}
 
 	Project getProjectItem(long id) {

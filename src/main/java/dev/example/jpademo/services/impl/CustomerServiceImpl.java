@@ -1,6 +1,6 @@
 package dev.example.jpademo.services.impl;
 
-import static dev.example.jpademo.services.impl.DtoUtils.toCustomerDto;
+import static dev.example.jpademo.services.impl.ServiceUtils.toCustomerDto;
 
 import java.util.Collections;
 import java.util.List;
@@ -46,7 +46,7 @@ public class CustomerServiceImpl implements CustomerService {
 		return Collections.unmodifiableList(
 			repository.findByNameContainingIgnoreCase(
 				namePattern == null ? "" : namePattern, page
-			).stream().map(DtoUtils::toCustomerDto).toList());
+			).stream().map(ServiceUtils::toCustomerDto).toList());
 	}
 
 	@Override

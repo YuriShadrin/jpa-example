@@ -9,7 +9,9 @@ import dev.example.jpademo.persistent.model.Customer;
 import dev.example.jpademo.persistent.model.Employee;
 import dev.example.jpademo.persistent.model.Project;
 
-public class DtoUtils {
+public class ServiceUtils {
+
+	private ServiceUtils() {}
 
 	static CustomerDto toCustomerDto(Customer customer) {
 		return new CustomerDto(customer.getId(), customer.getName(), customer.getAddress(), customer.getSiteUrl());
@@ -23,7 +25,7 @@ public class DtoUtils {
 		return new ProjectDto(project.getId(), project.getName(), project.getDescription(),
 			toCustomerDto(project.getCustomer()),
 			withEmployees ? 
-				Collections.unmodifiableList(project.getEmployees().stream().map(DtoUtils::toEmployeeDto).toList()) :
+				Collections.unmodifiableList(project.getEmployees().stream().map(ServiceUtils::toEmployeeDto).toList()) :
 				Collections.emptyList());
 	}
 
@@ -33,7 +35,7 @@ public class DtoUtils {
 			employee.getFirstName(),
 			employee.getLastName(),
 			employee.getBirthDate(),
-			Collections.unmodifiableList(employee.getProjects().stream().map(DtoUtils::toProjectDto).toList())
+			Collections.unmodifiableList(employee.getProjects().stream().map(ServiceUtils::toProjectDto).toList())
 		);
 	}
 

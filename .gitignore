@@ -6,5 +6,7 @@
 *.zip
 *.tar.gz
 *.rar
-db
+demodb
 target
+.classpath
+.project

@@ -121,7 +121,7 @@ public class JpaDemoTest {
 		// find: Microsoft
 		assertThat(customerService.findCustomers("mi", PageRequest.ofSize(2)).size()).isEqualTo(1);
 		// find: one customer per page
-		assertThat(customerService.findCustomers("", PageRequest.ofSize(1)).size()).isEqualTo(1);
+		assertThat(customerService.findCustomers(null, PageRequest.ofSize(1)).size()).isEqualTo(1);
 
 		// update
 		var cu1 = customerService.updateCustomer(custMC.id(), "NO ADDRESS", null);
@@ -213,6 +213,12 @@ public class JpaDemoTest {
 
 		employeeService.deleteEmployee(emplSP.id());
 		assertTrue(employeeService.findEmployee(emplSP.id()).isEmpty());
+		
+		assertThat(employeeService.findEmployees("", PageRequest.ofSize(3)).size()).isEqualTo(3);
+		assertThrows(NullPointerException.class, () -> employeeService.findEmployees(null, PageRequest.ofSize(3)));
+
+		assertTrue(employeeService.getEmployeePhoto(-1L).isEmpty());
+		assertTrue(employeeService.getEmployeePhoto(emplBG.id()).isPresent());
 	}
 
 	static byte[] loadResource(String resourceName) throws IOException {
