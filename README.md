@@ -1,6 +1,6 @@
 # JPA EXAMPLE
-The project basically is for educational purposes only. But you can download it and modify as you need.
-The project demonstrates how to easy create and use Java JPA persistent layer.
+The project is mainly intended for educational purposes. Nevertheless you can download it and modify as you need.
+The project demonstrates how to create and use Java JPA persistent layer.
 
 ***Keep in mind that the project is not meant to be used in your production because it is not optimized for SQL queries.***
 
