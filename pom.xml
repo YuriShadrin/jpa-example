@@ -14,7 +14,7 @@
         <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.example</groupId>
+    <groupId>dev.example</groupId>
     <artifactId>jpa-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <description>Demo project for JPA Spring Boot</description>
